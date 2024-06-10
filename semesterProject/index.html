@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Динамическая карта</title>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=a4c6ae90-68fd-4076-b8fe-425ad064d21e"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Секция авторизации -->
+<div class="login-container" id="login-container">
+    <h1>Введите ваше имя</h1>
+    <input type="text" id="username" placeholder="Ваше имя" required>
+    <button onclick="login()">Далее</button>
+</div>
+
+<!-- Основная секция карты -->
+<div class="main-container" id="main-container" style="display: none;">
+    <div class="header">
+        <h1>Привет, <span id="user-name"></span>!</h1>
+    </div>
+    <div class="content">
+        <p>Добро пожаловать на сайт!</p>
+        <div>
+            <button onclick="showUserMarkerInput()">Поставить метку себя</button>
+            <button onclick="removeUserMarker()">Удалить свой адрес</button>
+            <button onclick="showMultipleMarkersInput()">Поставить метки</button>
+            <button onclick="buildRoute()">Построить маршрут</button>
+            <button onclick="removeAllMarkers()">Удалить метки</button>
+            <button onclick="resetRoute()">Сбросить маршрут</button>
+        </div>
+        <div id="user-marker-container" style="display: none;">
+            <h2>Введите ваш адрес</h2>
+            <input type="text" id="user-address" placeholder="Введите ваш адрес">
+            <button onclick="setUserMarker()">Поставить метку</button>
+        </div>
+        <div id="multiple-markers-container" style="display: none;">
+            <h2>Введите количество меток</h2>
+            <input type="number" id="markers-count" min="1" placeholder="Количество меток">
+            <button onclick="generateAddressInputs()">Далее</button>
+            <div id="addresses-container"></div>
+            <button id="set-multiple-markers-button" onclick="setMultipleMarkers()" style="display: none;">Поставить метки</button>
+        </div>
+        <div id="map" style="width: 600px; height: 400px; margin-top: 20px;"></div>
+    </div>
+</div>
+
+<script src="auth.js"></script>
+<script src="map.js"></script>
+<script src="route.js"></script>
+</body>
+</html>
